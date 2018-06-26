@@ -1,0 +1,17 @@
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\TimeManagerConsole.Tests.deps.json
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\TimeManagerConsole.Tests.runtimeconfig.json
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\TimeManagerConsole.Tests.runtimeconfig.dev.json
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\TimeManagerConsole.Tests.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\TimeManagerConsole.Tests.pdb
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\SimpleTimeManager.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\SimpleTimeManager.pdb
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.csprojAssemblyReference.cache
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.csproj.CoreCompileInputs.cache
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.AssemblyInfoInputs.cache
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.AssemblyInfo.cs
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.csproj.CopyComplete
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.pdb

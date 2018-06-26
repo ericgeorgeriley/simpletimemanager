@@ -1,0 +1,10 @@
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\bin\Release\netcoreapp2.0\SimpleTimeManager.deps.json
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\bin\Release\netcoreapp2.0\SimpleTimeManager.runtimeconfig.json
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\bin\Release\netcoreapp2.0\SimpleTimeManager.runtimeconfig.dev.json
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\bin\Release\netcoreapp2.0\SimpleTimeManager.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\bin\Release\netcoreapp2.0\SimpleTimeManager.pdb
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\obj\Release\netcoreapp2.0\SimpleTimeManager.csproj.CoreCompileInputs.cache
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\obj\Release\netcoreapp2.0\SimpleTimeManager.AssemblyInfoInputs.cache
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\obj\Release\netcoreapp2.0\SimpleTimeManager.AssemblyInfo.cs
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\obj\Release\netcoreapp2.0\SimpleTimeManager.dll
+C:\Users\eric.riley\Dropbox\Projects\Dev\SimpleTimeManager\SimpleTimeManager\obj\Release\netcoreapp2.0\SimpleTimeManager.pdb
