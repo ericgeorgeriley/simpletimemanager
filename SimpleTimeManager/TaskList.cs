@@ -112,7 +112,7 @@ namespace SimpleTimeManager
                 State = State
             });
         }
-        internal TimeSpan GetDuration()
+        public TimeSpan GetDuration()
         {
             if (ActiveStarted != null)
                 return (Duration + (DateTime.Now - (DateTime)ActiveStarted));
