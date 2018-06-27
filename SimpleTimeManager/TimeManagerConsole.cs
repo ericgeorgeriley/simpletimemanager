@@ -59,7 +59,6 @@ namespace SimpleTimeManager
             Session.ApplyHighlightBackground();
             Console.Write("Task: " + taskIndex);
 
-            // if (taskIndex != "0")
             for (int i = 0; i < remainingRequiredDigits; i++)
                 taskIndex += GetNextInput(taskIndex);
             Session.ApplyDefaultForeground();

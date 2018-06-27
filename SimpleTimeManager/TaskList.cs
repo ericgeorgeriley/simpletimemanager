@@ -4,6 +4,20 @@ using System.Text;
 
 namespace SimpleTimeManager
 {
+    public enum TaskState
+    {
+        Open, Closed
+    }
+
+    public enum TaskStatus
+    {
+        NotStarted = 0,
+        Waiting = 1,
+        Active = 2,
+        Complete = 3,
+        Cancelled = 4
+    }
+
     public class TaskList
     {
         public List<SimpleTask> Tasks { get; set; }
@@ -23,20 +37,6 @@ namespace SimpleTimeManager
         }
     }
 
-    public enum TaskState
-    {
-        Open,
-        Closed
-    }
-
-    public enum TaskStatus
-    {
-        NotStarted = 0,
-        Waiting = 1,
-        Active = 2,
-        Complete = 3,
-        Cancelled = 4
-    }
 
     public class SimpleTask
     {
@@ -103,6 +103,14 @@ namespace SimpleTimeManager
             UpdateAuditTracking();
         }
 
+        public TimeSpan GetDuration()
+        {
+            if (ActiveStarted != null)
+                return (Duration + (DateTime.Now - (DateTime)ActiveStarted));
+
+            return Duration;
+        }
+
         private void UpdateAuditTracking()
         {
             AuditTracker.Add(new TaskAudit
@@ -112,13 +120,7 @@ namespace SimpleTimeManager
                 State = State
             });
         }
-        public TimeSpan GetDuration()
-        {
-            if (ActiveStarted != null)
-                return (Duration + (DateTime.Now - (DateTime)ActiveStarted));
 
-            return Duration;
-        }
     }
 
     public class TaskAudit
