@@ -32,3 +32,4 @@ C:\Users\eric.riley\Dropbox\GitHub\ericgeorgeriley.github.io\simpletimemanager\T
 C:\Users\eric.riley\Dropbox\GitHub\ericgeorgeriley.github.io\simpletimemanager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.csproj.CopyComplete
 C:\Users\eric.riley\Dropbox\GitHub\ericgeorgeriley.github.io\simpletimemanager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.dll
 C:\Users\eric.riley\Dropbox\GitHub\ericgeorgeriley.github.io\simpletimemanager\TimeManagerConsoleTests\obj\Debug\netcoreapp2.0\TimeManagerConsole.Tests.pdb
+C:\Users\eric.riley\Dropbox\GitHub\ericgeorgeriley.github.io\simpletimemanager\TimeManagerConsoleTests\bin\Debug\netcoreapp2.0\testdata.json

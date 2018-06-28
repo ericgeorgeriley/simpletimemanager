@@ -17,4 +17,10 @@
     <ProjectReference Include="..\SimpleTimeManager\SimpleTimeManager.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="testdata.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

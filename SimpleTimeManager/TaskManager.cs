@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SimpleTimeManager.Tasks;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace SimpleTimeManager
@@ -14,7 +14,7 @@ namespace SimpleTimeManager
 
         public TaskManager()
         {
-            TaskList = new TaskList();
+            TaskList = new TaskList(@"savedata.json");
             ViewContext = TaskState.Open;
         }
 
@@ -24,21 +24,21 @@ namespace SimpleTimeManager
             Session.LineBreak();
             Console.Write("  Task Name: ");
             var taskName = Console.ReadLine();
-
-            TaskList.Tasks.Add(new SimpleTask(taskName));
-            TaskList.Save();
-            DisplayTask(TaskList.Tasks.IndexOf(TaskList.Tasks.Last()));
+            if (TaskList.AddTask(taskName)) {
+                TaskList.Save();
+                DisplayTask(TaskList.GetLatestTaskIndex());
+            }
         }
 
         internal void DisplayTask(int taskIndex)
         {
-            if (!TaskExists(taskIndex))
+            if (!TaskList.TaskExists(taskIndex))
             {
                 Session.DisplayError("that task doesn't exist");
                 return;
             }
 
-            _taskContext = TaskList.Tasks.ElementAt(taskIndex);
+            _taskContext = TaskList.GetTask(taskIndex);
 
             Console.Clear();
             Session.LineBreak();
@@ -75,33 +75,14 @@ namespace SimpleTimeManager
             TaskMenuHandler();
         }
 
-        private string GetTaskDuration(TimeSpan duration)
-        {
-            var durationString = "";
-
-            if (duration > TimeSpan.FromDays(1))
-                durationString += string.Format("{0} Days ", duration.Days);
-
-            if (duration > TimeSpan.FromHours(1))
-                durationString += string.Format("{0} Hours ", duration.Hours);
-
-            if (duration > TimeSpan.FromMinutes(1))
-                durationString += string.Format("{0} Minutes ", duration.Minutes);
-
-            if (duration > TimeSpan.FromSeconds(1))
-                durationString += string.Format("{0} Seconds ", duration.Seconds);
-
-            return string.IsNullOrEmpty(durationString) ? "N/A" : durationString;
-        }
-
         public void DisplayTaskList()
         {
             IEnumerable<SimpleTask> tasks;
 
             if (ViewContext == TaskState.Open)
-                tasks = TaskList.Tasks.Where(x => x.State == TaskState.Open);
+                 tasks = TaskList.GetTasks(TaskState.Open);
             else
-                tasks = TaskList.Tasks.Where(x => x.State == TaskState.Closed);
+                tasks = TaskList.GetTasks(TaskState.Closed);
 
             tasks = tasks.OrderByDescending(x => x.Status);
             Console.Clear();
@@ -111,15 +92,14 @@ namespace SimpleTimeManager
             Console.WriteLine(string.Format("     ┌  {0} ┬  {1} ┐", ViewContext + " Tasks".PadRight(39 - ViewContext.ToString().Length), "Age".PadRight(7)));
             Console.WriteLine(string.Format("┌────┼{0}┼{1}┼──┐", "".PadRight(42, '─'), "".PadRight(10, '─')));
 
-
             foreach (var task in tasks)
             {
                 Session.ApplyMutedForeground();
-                Console.Write("│" + TaskList.Tasks.IndexOf(task).ToString().PadLeft(3, ' ').PadRight(4));
+                Console.Write("│" + TaskList.GetTaskIndex(task).ToString().PadLeft(3, ' ').PadRight(4));
 
                 Session.ApplyDefaultForeground();
                 Console.Write(string.Format("├ {1} ┼ {2} ┤",
-                    TaskList.Tasks.IndexOf(task).ToString().PadLeft(3, ' ').PadRight(4),
+                    TaskList.GetTaskIndex(task).ToString().PadLeft(3, ' ').PadRight(4),
                     task.Name.Length > 40 ? string.Concat(task.Name.Substring(0, 37), "...") : task.Name.PadRight(40),
                     GetTaskAge(task.CreatedDate).PadRight(8).PadLeft(8)
                     ));
@@ -131,8 +111,6 @@ namespace SimpleTimeManager
                 Session.ApplyDefaultForeground();
             }
             Console.WriteLine(string.Format("└────┴{0}┴{1}┴──┘", "".PadRight(42, '─'), "".PadRight(10, '─')));
-
-            // Session.LineBreak();
 
             Session.LineBreak();
             Session.DisplayOptions(new[] { "New Task", ViewContext == TaskState.Open ? "View Closed" : "View Opened", "Stats", "Exit" });
@@ -193,6 +171,25 @@ namespace SimpleTimeManager
             DisplayTaskList();
         }
 
+        private string GetTaskDuration(TimeSpan duration)
+        {
+            var durationString = "";
+
+            if (duration > TimeSpan.FromDays(1))
+                durationString += string.Format("{0} Days ", duration.Days);
+
+            if (duration > TimeSpan.FromHours(1))
+                durationString += string.Format("{0} Hours ", duration.Hours);
+
+            if (duration > TimeSpan.FromMinutes(1))
+                durationString += string.Format("{0} Minutes ", duration.Minutes);
+
+            if (duration > TimeSpan.FromSeconds(1))
+                durationString += string.Format("{0} Seconds ", duration.Seconds);
+
+            return string.IsNullOrEmpty(durationString) ? "N/A" : durationString;
+        }
+
         private static string GetTaskAge(DateTime createdDate)
         {
             var age = DateTime.Now - createdDate;
@@ -212,12 +209,5 @@ namespace SimpleTimeManager
             return ("Old");
 
         }
-
-        internal bool TaskExists(int intIndex)
-        {
-            return TaskList.Tasks.Count() >= intIndex + 1;
-        }
-
-
     }
 }

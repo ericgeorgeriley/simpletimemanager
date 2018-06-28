@@ -2,42 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTimeManager
+namespace SimpleTimeManager.Tasks
 {
-    public enum TaskState
-    {
-        Open, Closed
-    }
-
-    public enum TaskStatus
-    {
-        NotStarted = 0,
-        Waiting = 1,
-        Active = 2,
-        Complete = 3,
-        Cancelled = 4
-    }
-
-    public class TaskList
-    {
-        public List<SimpleTask> Tasks { get; set; }
-        public TaskList()
-        {
-            Tasks = Load() ?? new List<SimpleTask>();
-        }
-
-        private List<SimpleTask> Load()
-        {
-            return Session.Load();
-        }
-
-        internal void Save()
-        {
-            Session.Save(Tasks);
-        }
-    }
-
-
     public class SimpleTask
     {
         public TaskState State { get; set; }
@@ -123,10 +89,4 @@ namespace SimpleTimeManager
 
     }
 
-    public class TaskAudit
-    {
-        public DateTime Timestamp { get; set; }
-        public TaskState State { get; set; }
-        public TaskStatus Status { get; set; }
-    }
 }

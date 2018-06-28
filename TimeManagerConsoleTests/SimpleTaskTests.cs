@@ -1,6 +1,5 @@
-using SimpleTimeManager;
+using SimpleTimeManager.Tasks;
 using System;
-using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 

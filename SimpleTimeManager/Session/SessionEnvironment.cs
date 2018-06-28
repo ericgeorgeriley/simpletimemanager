@@ -1,37 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using SimpleTimeManager.Tasks;
 using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace SimpleTimeManager
 {
-    internal class Session
+    internal class SessionEnvironment
     {
-
-        internal static void Save(List<SimpleTask> tasks)
-        {
-            var saveData = JsonConvert.SerializeObject(tasks);
-            TextWriter writer;
-            using (writer = new StreamWriter(@"savedata.json", append: false))
-            {
-                writer.WriteLine(saveData);
-            }
-        }
-
-        internal static List<SimpleTask> Load()
-        {
-            try
-            {
-                string saveData = File.ReadAllText(@"savedata.json");
-                return JsonConvert.DeserializeObject<List<SimpleTask>>(saveData);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("info: unable to find save file");
-                return null;
-            }
-        }
-
         internal static char GetInput()
         {
             while (true)
@@ -44,7 +17,7 @@ namespace SimpleTimeManager
             }
         }
 
-
+        #region UI Outputs
         internal static void DisplayError(string v)
         {
             ApplyErrorForeground();
@@ -87,7 +60,16 @@ namespace SimpleTimeManager
             }
         }
 
+        internal static void LineBreak(int breaks = 1)
+        {
+            for (int i = 0; i < breaks; i++)
+            {
+                Console.WriteLine("".PadRight(70, ' '));
+            }
+        }
+        #endregion
 
+        #region Console Styles
         internal static void ApplyErrorForeground()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -107,6 +89,7 @@ namespace SimpleTimeManager
         {
             Console.ForegroundColor = ConsoleColor.White;
         }
+
         internal static void ApplyStatusForeground(TaskStatus status)
         {
             switch (status)
@@ -132,15 +115,6 @@ namespace SimpleTimeManager
             }
         }
 
-        internal static void LineBreak(int breaks = 1)
-        {
-            for (int i = 0; i < breaks; i++)
-            {
-                Console.WriteLine("".PadRight(70, ' '));
-            }
-        }
-
-
         internal static void ApplyDefaultBackground()
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -150,5 +124,6 @@ namespace SimpleTimeManager
         {
             Console.BackgroundColor = ConsoleColor.Gray;
         }
+        #endregion
     }
 }

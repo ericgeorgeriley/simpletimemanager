@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleTimeManager.Tasks;
+using System;
 
 namespace SimpleTimeManager
 {
@@ -38,7 +39,8 @@ namespace SimpleTimeManager
                     taskManager.NewTask();
                     break;
                 case "S":
-                    taskManager.ViewContext = taskManager.ViewContext == TaskState.Open ? TaskState.Closed : TaskState.Open;
+                    taskManager.ViewContext = taskManager.ViewContext == TaskState.Open ? 
+                        TaskState.Closed : TaskState.Open;
                     break;
                 case "F":
                     exitState = true;
