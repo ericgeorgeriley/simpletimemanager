@@ -5478,9 +5478,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\eric.riley\\Dropbox\\GitHub\\ericgeorgeriley.github.io\\simpletimemanager\\TimeManagerConsoleTests\\TimeManagerConsole.Tests.csproj",
-      "projectName": "TimeManagerConsole.Tests",
-      "projectPath": "C:\\Users\\eric.riley\\Dropbox\\GitHub\\ericgeorgeriley.github.io\\simpletimemanager\\TimeManagerConsoleTests\\TimeManagerConsole.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\eric.riley\\Dropbox\\GitHub\\ericgeorgeriley.github.io\\simpletimemanager\\TimeManagerConsoleTests\\SimpleTimeManager.Tests.csproj",
+      "projectName": "SimpleTimeManager.Tests",
+      "projectPath": "C:\\Users\\eric.riley\\Dropbox\\GitHub\\ericgeorgeriley.github.io\\simpletimemanager\\TimeManagerConsoleTests\\SimpleTimeManager.Tests.csproj",
       "packagesPath": "C:\\Users\\eric.riley\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\eric.riley\\Dropbox\\GitHub\\ericgeorgeriley.github.io\\simpletimemanager\\TimeManagerConsoleTests\\obj\\",
       "projectStyle": "PackageReference",

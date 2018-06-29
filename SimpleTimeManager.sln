@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTimeManager", "SimpleTimeManager\SimpleTimeManager.csproj", "{89904003-946B-4EEE-93CF-375177F6911C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeManagerConsole.Tests", "TimeManagerConsoleTests\TimeManagerConsole.Tests.csproj", "{303859F2-339C-4F38-8EE4-40F990AC62CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTimeManager.Tests", "TimeManagerConsoleTests\SimpleTimeManager.Tests.csproj", "{303859F2-339C-4F38-8EE4-40F990AC62CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

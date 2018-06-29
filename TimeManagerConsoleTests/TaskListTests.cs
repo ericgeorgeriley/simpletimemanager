@@ -2,8 +2,9 @@
 using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
+using SimpleTimeManager.Tests.TestData;
 
-namespace TimeManagerConsole.Tests
+namespace SimpleTimeManager.Tests
 {
     [Trait("Category", "TaskWorkflow")]
     public class TaskListShould
@@ -16,7 +17,7 @@ namespace TimeManagerConsole.Tests
         public TaskListShould(ITestOutputHelper output)
         {
             _output = output;
-            _sampletasklist = new TaskList(@"testdata.json");
+            _sampletasklist = new TaskList(@"TestData\testdata.json");
             _output.WriteLine(string.Format("Created an sample task list"));
             _emptytasklist = new TaskList();
             _output.WriteLine(string.Format("Created an empty task list"));
@@ -38,6 +39,30 @@ namespace TimeManagerConsole.Tests
         }
 
         [Fact]
+        public void PersistTasksWhenSaving()
+        {
+            var saveTaskList = new TaskList(@"TestData\savedatatest.json");
+            saveTaskList.AddTask("Persisted Task");
+            saveTaskList.Save();
+
+            var tasksCount = saveTaskList.Tasks.Count();
+            var savedTask = saveTaskList.GetTask(saveTaskList.GetLatestTaskIndex());
+
+            var loadedTaskList = new TaskList(@"TestData\savedatatest.json");
+            var persistedTask = loadedTaskList.GetTask(saveTaskList.GetLatestTaskIndex());
+
+            Assert.NotEmpty(loadedTaskList.Tasks);
+            Assert.Equal(tasksCount, loadedTaskList.Tasks.Count());
+            Assert.Equal(savedTask.Name, persistedTask.Name);
+            Assert.Equal(savedTask.State, persistedTask.State);
+            Assert.Equal(savedTask.Status, persistedTask.Status);
+            Assert.Equal(savedTask.CreatedDate, persistedTask.CreatedDate);
+            Assert.Equal(savedTask.Duration, persistedTask.Duration);
+            Assert.Equal(savedTask.ActiveStarted, persistedTask.ActiveStarted);
+            Assert.Equal(savedTask.AuditTracker, persistedTask.AuditTracker);
+        }
+
+        [Fact]
         public void AddTaskToTheList()
         {
             var initialTaskCount = _sampletasklist.Tasks.Count();
@@ -54,10 +79,7 @@ namespace TimeManagerConsole.Tests
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(3)]
-        [InlineData(7)]
-        [InlineData(11)]
+        [TaskIndexTestData]
         public void ReturnRequestedTask(int taskIndex)
         {
             var requestedTask = _sampletasklist.GetTask(taskIndex);
@@ -69,20 +91,17 @@ namespace TimeManagerConsole.Tests
         [Theory]
         [InlineData(TaskState.Open)]
         [InlineData(TaskState.Closed)]
-        public void ReturnRequestedTasks(TaskState state)
+        public void ReturnTasksForRequestedState(TaskState state)
         {
             var requestedTasks = _sampletasklist.GetTasks(state);
 
-            int foo = _sampletasklist.Tasks.Where(x => x.State == state).Count();
+            int expectedTaskCount = _sampletasklist.Tasks.Where(x => x.State == state).Count();
 
-            Assert.Equal(foo, requestedTasks.Count());
+            Assert.Equal(expectedTaskCount, requestedTasks.Count());
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(3)]
-        [InlineData(7)]
-        [InlineData(11)]
+        [TaskIndexTestData]
         public void ReturnRequestedTaskIndex(int taskIndex)
         {
             var requestedTask = _sampletasklist.GetTask(taskIndex);
@@ -92,17 +111,14 @@ namespace TimeManagerConsole.Tests
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(3)]
-        [InlineData(7)]
-        [InlineData(11)]
+        [TaskIndexTestData]
         public void ConfirmATaskExists(int taskIndex)
         {
             Assert.True(_sampletasklist.TaskExists(taskIndex));
         }
 
         [Theory]
-        [InlineData(-2)]
+        [InlineData(-1)]
         [InlineData(12)]
         public void ConfirmATaskDoesntExist(int taskIndex)
         {

@@ -1,9 +1,10 @@
 using SimpleTimeManager.Tasks;
+using SimpleTimeManager.Tests.TestData;
 using System;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace TimeManagerConsoleTests
+namespace SimpleTimeManager.Tests
 {
     [Trait("Category", "TaskWorkflow")]
     public class SimpleTaskShould
@@ -78,23 +79,40 @@ namespace TimeManagerConsoleTests
         }
 
         [Theory]
-        [InlineData(1)]
-        [InlineData(10)]
-        [InlineData(100)]
-        public void UpdateAuditTrackerWhenChangingStatus(int value)
+        [TaskStatusTestData]
+        public void UpdateAuditTrackerWhenChangingStatus(TaskStatus status)
         {
-            for (int i = 0; i < value; i++)
+            int expectedTrackerCount = 1;
+
+            switch (status)
             {
-                _task.Active();
-                _task.Wait();
-                _task.Cancel();
-                _task.Reopen();
-                _task.Complete();
+                case TaskStatus.NotStarted:
+                    expectedTrackerCount = 0;
+                    break;
+
+                case TaskStatus.Waiting:
+                    _task.Active();
+                    _task.Wait();
+                    expectedTrackerCount = 2;
+                    break;
+
+                case TaskStatus.Active:
+                    _task.Active();
+                    break;
+
+                case TaskStatus.Complete:
+                    _task.Complete();
+                    break;
+
+                case TaskStatus.Cancelled:
+                    _task.Cancel();
+                    break;
+
+                default:
+                    break;
             }
 
-            Assert.Equal(TaskState.Closed, _task.State);
-            Assert.Equal(TaskStatus.Complete, _task.Status);
-            Assert.Equal(value * 5, _task.AuditTracker.Count);
+            Assert.Equal(expectedTrackerCount, _task.AuditTracker.Count);
         }
 
         [Fact]
@@ -116,11 +134,7 @@ namespace TimeManagerConsoleTests
         }
 
         [Theory]
-        [InlineData(TaskStatus.NotStarted)]
-        [InlineData(TaskStatus.Active)]
-        [InlineData(TaskStatus.Waiting)]
-        [InlineData(TaskStatus.Complete)]
-        [InlineData(TaskStatus.Cancelled)]
+        [TaskStatusTestData]
         public void MaintainCurrentStatus(TaskStatus status)
         {
             switch (status)
@@ -142,7 +156,7 @@ namespace TimeManagerConsoleTests
                     break;
                 default:
                     break;
-            }            
+            }
 
             Assert.Equal(status, _task.Status);
         }

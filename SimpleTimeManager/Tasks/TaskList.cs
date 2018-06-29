@@ -34,7 +34,7 @@ namespace SimpleTimeManager.Tasks
             return Session.Load(FileName);
         }
 
-        internal void Save()
+        public void Save()
         {
             Session.Save(Tasks, FileName);
         }
